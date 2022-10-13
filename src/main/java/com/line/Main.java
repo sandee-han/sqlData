@@ -8,7 +8,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
         LineReader<Hospital> hospitalLineReader = new LineReader<>(new HospitalParser());
-        String filename = "C:\\Users\\iwmis\\Downloads\\seoul_hospital.csv";
+        String filename = "C:\\Users\\iwmis\\Downloads\\seoul_hospital_info.csv";
         List<Hospital> hospitals = hospitalLineReader.readLines(filename);
 
         System.out.println(hospitals.size());
