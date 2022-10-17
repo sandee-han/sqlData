@@ -3,3 +3,4 @@
 build/
 .gradle/
 *.gradle
+src/main/java/com/dbexercise/UserDao.java

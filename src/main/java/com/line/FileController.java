@@ -1,7 +1,6 @@
 package com.line;
 
 import com.line.domain.Hospital;
-import com.line.parser.HospitalParser;
 import com.line.parser.Parser;
 
 import java.io.*;
@@ -33,7 +32,7 @@ public class FileController<T> {
 
     public void writeFile(List<Hospital> hps, String filename) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
-        bw.write(getSqlInsertQuery());
+        bw.write(getHospitalSqlInsertQuery());
         for (Hospital hp : hps) {
             bw.append(hp.getTupleString());
         }
@@ -41,7 +40,7 @@ public class FileController<T> {
         bw.close();
     }
 
-    public String getSqlInsertQuery() {
+    public String getHospitalSqlInsertQuery() {
         String sqlLine = String.format("INSERT INTO `likelion-db`.`seoul_hospital`\n" +
                 "(`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`)\n" +
                 "VALUES\n");

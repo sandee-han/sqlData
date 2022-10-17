@@ -4,10 +4,7 @@ import com.line.FileController;
 import com.line.domain.Hospital;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class HospitalParserTest {
     // alt + insert
@@ -74,6 +71,6 @@ class HospitalParserTest {
                 "2,\n" +
                 "\"가산기대찬의원\",\n" +
                 "\"\");";
-        Assertions.assertEquals(sql, new FileController<Hospital>(new HospitalParser()).getSqlInsertQuery() + hospital.getTupleString());
+        Assertions.assertEquals(sql, new FileController<Hospital>(new HospitalParser()).getHospitalSqlInsertQuery() + hospital.getTupleString());
     }
 }
