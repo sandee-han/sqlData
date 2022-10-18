@@ -55,7 +55,7 @@ public class UserDao2 {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao2 userDao2 = new UserDao2();
-        User user = userDao2.get("1");
+        User user = userDao2.get("2");
         System.out.println(user.getName());
     }
 }
