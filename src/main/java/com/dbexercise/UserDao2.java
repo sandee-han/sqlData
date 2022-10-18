@@ -5,33 +5,27 @@ import com.dbexercise.domain.User;
 import java.sql.*;
 import java.util.Map;
 
-public class UserDao2 {
+public abstract class UserDao2 {
 
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Map<String, String> env = System.getenv();
-        String dbHost = env.get("DB_HOST");
-        String dbUser = env.get("DB_USER");
-        String dbPassword = env.get("DB_PASSWORD");
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection c = DriverManager.getConnection(dbHost, dbUser, dbPassword);
-        return c;
+    public void delete(String id) {
+
     }
 
 
-    public void add() throws SQLException, ClassNotFoundException {
+    public void add(User user) throws SQLException, ClassNotFoundException {
         Connection c = getConnection();
 
         PreparedStatement ps = c.prepareStatement("INSERT INTO users(id, name, password) VALUES(?, ?, ?)");
-        ps.setString(1, "3");
-        ps.setString(2, "ale");
-        ps.setString(3, "1234");
+        ps.setString(1, user.getId());
+        ps.setString(2, user.getName());
+        ps.setString(3, user.getPassword());
 
         int status = ps.executeUpdate();    // ctrl + enter
         //  executeUpdate 반환값 : row cnt
 
         System.out.println(status);
-        ps.executeUpdate(); // ctrl + enter
         ps.close();
         c.close();
         System.out.println("DB Insert 완료");
@@ -53,8 +47,9 @@ public class UserDao2 {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao2 userDao2 = new UserDao2();
-        User user = userDao2.get("2");
+        NUserDao nUserDao = new NUserDao();
+        User user = nUserDao.get("2");
+        nUserDao.add(new User("6", "son", "1234qwer"));
         System.out.println(user.getName());
     }
 }
